@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApplicationtestgithub
@@ -18,7 +19,7 @@ namespace WebApplicationtestgithub
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IConfiguration configuration )
         {
             if (env.IsDevelopment())
             {
@@ -27,7 +28,9 @@ namespace WebApplicationtestgithub
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                var test = configuration.GetConnectionString("DefaultConnection");
+                var test2 = "some extra data";
+                await context.Response.WriteAsync(test+test2);
             });
         }
     }
