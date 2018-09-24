@@ -30,6 +30,7 @@ namespace WebApplicationtestgithub
             {
                 var test = configuration.GetConnectionString("DefaultConnection");
                 var test2 = "some extra data";
+                var test4 = "some more data from 2";
                 await context.Response.WriteAsync(test+test2);
             });
         }
